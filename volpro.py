@@ -148,7 +148,7 @@ for task_filescan in task_filescanlist:
 with concurrent.futures.ThreadPoolExecutor() as executor:
     futures = {executor.submit(run_command, [volatility_path] + command, task_name): task_name for task_name, command in tasks.items()}
 concurrent.futures.wait(futures)
-print("[+] 🏆️All tasks completed!")
+print("[+] 🏆️全部任务已完成，即将进行文件合并!")
 def generate_markdown():
     markdown = ""
     for task_name in tasks.keys():
@@ -171,4 +171,4 @@ endtime = time.time()
 print("[+] 🕡️总共用时：",endtime-starttime)
 print("[*] 🎀正在创建Markdown 汇总")
 generate_markdown()
-print("[+] 🏆️Markdown summary generated in summary.md")
+print("[+] 🏆️Markdown 汇总已生成在 summary.md 文件中")
