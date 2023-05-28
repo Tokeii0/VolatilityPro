@@ -11,8 +11,11 @@ python volpro.py [imagename] (profile) (dumpfiles)
 
 ### 比如
 ```shell
+# 没有profile 自动取imageinfo第一个
 python Volpro.py ADMIN-PC-20220616-025554.raw
+# 设置了profile 跳过节约时间
 python Volpro.py ADMIN-PC-20220616-025554.raw Win7SP1x64
+# dumpfiles命令使用方法
 python Volpro.py ADMIN-PC-20220616-025554.raw Win7SP1x64 dumpfiles 0x000000007dcc4480
 ```
 
