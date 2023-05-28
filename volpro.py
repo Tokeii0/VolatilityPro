@@ -166,7 +166,7 @@ def generate_markdown():
                 markdown += f"```\n{f.read()}\n```\n"
         except FileNotFoundError:
             print(f"[-] File output/{task_name}.txt not found")
-    with open("output/summary.md", 'w') as f:
+    with open("output/summary.md", 'w',encoding='utf-8') as f:
         f.write(markdown)
 
 endtime = time.time()
