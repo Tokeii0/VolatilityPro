@@ -3,7 +3,7 @@ import subprocess
 import sys
 import time
 
-volatility_path = "vol.exe" # 如果为python版本，请把volatility_path改成"python vol.py"的路径。
+volatility_path = "volatility_2.6_win64_standalone.exe" 
 starttime = time.time()
 try:
     memorydump_path = sys.argv[1]
@@ -27,8 +27,6 @@ python volpro.py [imagename] (profile) (dumpfiles)
 不要着急，VolPro会帮你自动执行一系列任务，并将结果保存在output文件夹中。而且，我们还会把这些结果打包成漂亮的markdown文档，方便你查阅！📋
 
 让我们一起开始吧！现在，告诉我你的memorydump路径是什么呢？💭
-
-我们默认使用的是vol.exe,如果你是用的是python版本，请把volatility_path改成"python vol.py"的路径。🦄
 
 好了，现在你只需要运行脚本，其他的事情就交给VolPro吧！我们会以可爱又活泼的方式帮你完成任务，你只需要坐等结果就好啦！🤗
 
