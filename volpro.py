@@ -36,6 +36,8 @@ def random_emoji():
     return random.choice(emoji_list)
 
 #提示是否情况output文件夹,如果是则删除但保留summary.md，如果否则继续
+if not os.path.exists("output"):
+    os.mkdir("output")
 while True:
     delete_output = input("🎀是否清空output文件夹？(y/n)")
     if delete_output == "y":
