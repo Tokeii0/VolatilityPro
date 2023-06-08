@@ -30,6 +30,8 @@ python volpro.py [imagename] (profile) (dumpfiles)
 好了，现在你只需要运行脚本，其他的事情就交给VolPro吧！我们会以可爱又活泼的方式帮你完成任务，你只需要坐等结果就好啦！🤗
 
 ''')
+
+baseDir = os.path.dirname(os.path.abspath(__file__))
 # 随机emoji
 def random_emoji():
     emoji_list = ['🎉','🚀','📝','📁','📋','💭','🦄','🤗','💖']
@@ -49,7 +51,7 @@ while True:
     else:
         print("[-] 请输入y或n！")
 
-volatility_path = "vol.exe"
+volatility_path = os.path.join(baseDir, "vol.exe")
 starttime = time.time()
 try:
     memorydump_path = sys.argv[1]
@@ -115,7 +117,7 @@ except:
 #逐行读取tasklist.cfg，取每行 '-'分割的第一个参数作为任务名，后面为帮助
 tasklist = []
 tasklist_help = []
-with open("tasklist.cfg", 'r',encoding = 'utf-8') as f:
+with open(os.path.join(baseDir, "tasklist.cfg"), 'r',encoding = 'utf-8') as f:
     for line in f.readlines():
         tasklist.append(line.split('-')[0])
         tasklist_help.append(line.split('-')[1])
