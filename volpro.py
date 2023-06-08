@@ -30,38 +30,40 @@ python volpro.py [imagename] (profile) (dumpfiles)
 好了，现在你只需要运行脚本，其他的事情就交给VolPro吧！我们会以可爱又活泼的方式帮你完成任务，你只需要坐等结果就好啦！🤗
 
 ''')
+      
 # 随机emoji
 def random_emoji():
-    emoji_list = ['🎉','🚀','📝','📁','📋','💭','🦄','🤗','💖']
+    emoji_list = ['🎉', '🚀', '📝', '📁', '📋', '💭', '🦄', '🤗', '💖']
     return random.choice(emoji_list)
 
-#提示是否情况output文件夹,如果是则删除但保留summary.md，如果否则继续
-if not os.path.exists("output"):
-    os.mkdir("output")
+volatility_path = "vol.exe"
+starttime = time.time()
+
+try:
+    memorydump_path = sys.argv[1]
+except:
+    sys.exit()
+
+# 提示是否情况output文件夹,如果是则删除但保留summary.md，如果否则继续
+output_path = os.path.join(os.path.dirname(memorydump_path), 'output')
+if not os.path.exists(output_path):
+    os.mkdir(output_path)
 while True:
     delete_output = input("🎀是否清空output文件夹？(y/n)")
     if delete_output == "y":
-        shutil.rmtree("output")
-        os.mkdir("output")
+        shutil.rmtree(output_path)
+        os.mkdir(output_path)
         break
     elif delete_output == "n":
         break
     else:
         print("[-] 请输入y或n！")
 
-volatility_path = "vol.exe"
-starttime = time.time()
-try:
-    memorydump_path = sys.argv[1]
-except:
-    sys.exit()
-
-#获取剩下的未执行的任务
 def get_remaining_tasks():
     remaining_tasks = []
     for task_name in tasks.keys():
         try:
-            with open(f"output/{task_name}.txt", 'r') as f:
+            with open(os.path.join(output_path, f"{task_name}.txt"), 'r') as f:
                 pass
         except FileNotFoundError:
             remaining_tasks.append(task_name)
@@ -74,10 +76,8 @@ def run_command(command, task_name):
             output = result.stdout.decode("UTF-8", errors="ignore")
         except:
             output = result.stdout.decode("ISO-8859-1", errors="ignore")
-        #打印尚未执行的任务
-        
         if output is not None:
-            with open("output/{}.txt".format(task_name), "w") as f:
+            with open(os.path.join(output_path, f"{task_name}.txt"), "w") as f:
                 f.write(output)
         else:
             print("[-] No output for task {}".format(task_name))
@@ -87,16 +87,18 @@ def run_command(command, task_name):
     except subprocess.TimeoutExpired:
         print(f"[-] {task_name} timed out after 60 seconds.")
     except Exception as e:
-        print("[-] {} \n[-] Error while running command: {}".format(command,str(e)))
+        print("[-] {} \n[-] Error while running command: {}".format(command, str(e)))
+
 try:
-    if sys.argv[3]=="dumpfiles":
+    if sys.argv[3] == "dumpfiles":
         memlocal = sys.argv[3]
-        command = [volatility_path, "-f", memorydump_path, "dumpfiles", "-Q", memlocal,"-D",'./']
+        command = [volatility_path, "-f", memorydump_path, "dumpfiles", "-Q", memlocal, "-D", './']
         print("[*]🥰正在执行dumpfiles")
         dumpfiles_output = subprocess.run(command, stdout=subprocess.PIPE).stdout.decode("cp1252", errors="ignore")
         sys.exit(0)
 except:
     pass
+
 try:
     profile = sys.argv[2]
     print("[*] 🥰检测到Profile参数，正在跳过imageinfo")
@@ -111,66 +113,50 @@ except:
             profile = suggested_profiles.split(",")[0].strip()
             print("[+] 🥰设置的Profile: {}".format(profile))
             break
-#tasklist = ["netscan","pslist","pstree","cmdscan","consoles","cmdline","editbox","clipboard","iehistory","hivelist","envars"]
-#逐行读取tasklist.cfg，取每行 '-'分割的第一个参数作为任务名，后面为帮助
+
 tasklist = []
 tasklist_help = []
-with open("tasklist.cfg", 'r',encoding = 'utf-8') as f:
+with open("tasklist.cfg", 'r', encoding='utf-8') as f:
     for line in f.readlines():
         tasklist.append(line.split('-')[0])
         tasklist_help.append(line.split('-')[1])
 
-task_filescanlist = ["Desktop","Downloads",".zip","flag",'evtx']
-task_filescanlist_help = ["桌面","下载","压缩包","flag",'日志']
+task_filescanlist = ["Desktop", "Downloads", ".zip", "flag", 'evtx']
+task_filescanlist_help = ["桌面", "下载", "压缩包", "flag", '日志']
 tasks = {}
-print(f"[*] 🥰正在生成任务列表，共导入{len(tasklist)+len(task_filescanlist)}个任务")
+print(f"[*] 🥰正在生成任务列表，共导入{len(tasklist) + len(task_filescanlist)}个任务")
 for task in tasklist:
     tasks[task] = ["--profile={}".format(profile), "-f", memorydump_path, task]
 for task_filescan in task_filescanlist:
-    tasks["filescan({})".format(task_filescan)] = ["--profile={}".format(profile), "-f", memorydump_path, "filescan", "|","findstr", task_filescan]
-    
-# tasks = {
-#     "netscan": ["--profile={}".format(profile), "-f", memorydump_path, "netscan"],
-#     "pslist": ["--profile={}".format(profile), "-f", memorydump_path, "pslist"],
-#     "pstree": ["--profile={}".format(profile), "-f", memorydump_path, "pstree"],
-#     "cmdscan": ["--profile={}".format(profile), "-f", memorydump_path, "cmdscan"],
-#     "consoles": ["--profile={}".format(profile), "-f", memorydump_path, "consoles"],
-#     "cmdline": ["--profile={}".format(profile), "-f", memorydump_path, "cmdline"],
-#     "editbox": ["--profile={}".format(profile), "-f", memorydump_path, "editbox"],
-#     "clipboard" : ["--profile={}".format(profile), "-f", memorydump_path, "malfind"],
-#     "iehistory" : ["--profile={}".format(profile), "-f", memorydump_path, "iehistory"],
-#     "hivelist" : ["--profile={}".format(profile), "-f", memorydump_path, "hivelist"],
-#     "envars" : ["--profile={}".format(profile), "-f", memorydump_path, "envars"],
-#     "filescan(Desktop)" : ["--profile={}".format(profile), "-f", memorydump_path, "filescan", "|","findstr", "Desktop"],
-#     "filescan(Downloads)" : ["--profile={}".format(profile), "-f", memorydump_path, "filescan", "|","findstr", "Downloads"],
-#     "filescan(zip)" : ["--profile={}".format(profile), "-f", memorydump_path, "filescan", "|","findstr", ".zip"],
-#     "filescan(flag)" : ["--profile={}".format(profile), "-f", memorydump_path, "filescan", "|","findstr", "flag"],  
-# }
+    tasks["filescan({})".format(task_filescan)] = ["--profile={}".format(profile), "-f", memorydump_path, "filescan",
+                                                   "|", "findstr", task_filescan]
 
 with concurrent.futures.ThreadPoolExecutor() as executor:
-    futures = {executor.submit(run_command, [volatility_path] + command, task_name): task_name for task_name, command in tasks.items()}
+    futures = {executor.submit(run_command, [volatility_path] + command, task_name): task_name for task_name, command in
+               tasks.items()}
 concurrent.futures.wait(futures)
 print("[+] 🏆️全部任务已完成，即将进行文件合并!")
+
+
 def generate_markdown():
     markdown = ""
     for task_name in tasks.keys():
-        #标题加上tasklist.cfg文件中中的注释,'-'后面的内容
         try:
             markdown += f"# {task_name} \n## {tasklist_help[tasklist.index(task_name)]}\n"
         except:
-            #filescan任务，对应关键词
             if "filescan" in task_name:
                 markdown += f"# {task_name} \n## {task_filescanlist_help[task_filescanlist.index(task_name.split('(')[1].split(')')[0])]} \n"
         try:
-            with open(f"output/{task_name}.txt", 'r') as f:
+            with open(os.path.join(output_path, f"{task_name}.txt"), 'r') as f:
                 markdown += f"```\n{f.read()}\n```\n"
         except FileNotFoundError:
-            print(f"[-] File output/{task_name}.txt not found")
-    with open("output/summary.md", 'w',encoding='utf-8') as f:
+            print(f"[-] File {os.path.join(output_path, f'{task_name}.txt')} not found")
+    with open(os.path.join(output_path, "summary.md"), 'w', encoding='utf-8') as f:
         f.write(markdown)
 
+
 endtime = time.time()
-print("[+] 🕡️总共用时：",endtime-starttime)
+print("[+] 🕡️总共用时：", endtime - starttime)
 print("[*] 🎀正在创建Markdown 汇总")
 generate_markdown()
 print("[+] 🏆️Markdown 汇总已生成在 summary.md 文件中")
