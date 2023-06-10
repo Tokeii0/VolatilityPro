@@ -1,5 +1,14 @@
 # VolatilityPro ![10A2CDC8](https://github.com/Tokeii0/VolatilityPro/assets/111427585/cb6d8b58-2923-4147-9ac7-9491678af765)
 
+## 2023.6.10 更新
+方便大伙使用整了个GUI界面，即开即用
+![image](https://github.com/Tokeii0/VolatilityPro/assets/111427585/9cc796c8-b1bc-4b3c-90ac-a07fc1ccb1ec)
+
+
+
+
+下面是老版本帮助了
+------------------------------------------
 ## 帮助 
 
 ```shell
