@@ -1,5 +1,11 @@
 # VolatilityPro ![10A2CDC8](https://github.com/Tokeii0/VolatilityPro/assets/111427585/cb6d8b58-2923-4147-9ac7-9491678af765)
 
+## 2023.6.12 更新一下
+
+![动画2](https://github.com/Tokeii0/VolatilityPro/assets/111427585/19e089bb-4f68-47a1-ab3c-020e52a74847)
+
+
+------------------------------------------
 ## 2023.6.10 晚上更新一下
 支持选择filescan文件了
 ![new](https://github.com/Tokeii0/VolatilityPro/assets/111427585/cece18ca-39ce-44cc-8f74-8d880ae6315a)
