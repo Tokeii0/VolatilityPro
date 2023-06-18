@@ -4,7 +4,7 @@ from PySide6.QtCore import Qt
 from PySide6.QtGui import QIcon
 import sys,subprocess
 import warnings
-import os,csv,re
+import os,csv,re,mmap
 
 class MyForm(QDialog):
     def __init__(self):
@@ -25,6 +25,7 @@ class MyForm(QDialog):
         self.ui.listWidget.itemDoubleClicked.connect(self.add_to_lineEdit_2) # 添加这一行以响应双击事件
         self.ui.reloadingButton.clicked.connect(self.reloadingButton)
         self.load_filescan_combobox()
+        self.ui.pushButton_find.clicked.connect(lambda:self.find_regex_in_large_file(self.ui.lineEdit.text(),self.ui.lineEdit_findstr.text()))
         #dumpfilename
         
         #选择后直接执行load_filescan
@@ -164,6 +165,7 @@ class MyForm(QDialog):
         for i, row in enumerate(lines):
             for j, col in enumerate(row):
                 self.ui.tableWidget.setItem(i, j, QTableWidgetItem(col))
+        self.ui.tableWidget.resizeColumnsToContents()
     # 加载cmdline到table
     def load_cmdline_to_table(self):
         cmdlinedata = 'output\cmdline.txt'
@@ -188,6 +190,32 @@ class MyForm(QDialog):
         for i, row in enumerate(lines):
             for j, col in enumerate(row):
                 self.ui.tableWidget.setItem(i, j, QTableWidgetItem(col))    
+        self.ui.tableWidget.resizeColumnsToContents()
+    # 搜索字符串
+    def find_regex_in_large_file(self,file_path, regex):
+        #取WindowTitle标题
+        workdir = self.windowTitle()
+        file_path = workdir + '/' + file_path
+        with open(file_path, 'r+b') as file:
+            mm = mmap.mmap(file.fileno(), 0)
+            # 使用预编译的正则表达式进行搜索
+            pattern = re.compile(bytes(regex, 'utf-8'))
+            regexlist = []
+            for match in pattern.finditer(mm):
+                # 以utf-8格式解码以打印字符串
+                try:
+                    regexlist.append(match.group().decode('utf-8'))
+                except:
+                    pass
+            mm.close()
+        #加载到 tableWidget,宽度自适应
+        self.ui.tableWidget.setRowCount(len(regexlist))
+        self.ui.tableWidget.setColumnCount(1)
+        for i, row in enumerate(regexlist):
+            self.ui.tableWidget.setItem(i, 0, QTableWidgetItem(row))
+        self.ui.tableWidget.resizeColumnsToContents()
+            
+
 
 if __name__ == "__main__":
     os.environ['QT_LOGGING_RULES'] = 'qt.imageio.*=false'

@@ -24,36 +24,26 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
-        Dialog.resize(1027, 669)
-        self.pushButton_2 = QPushButton(Dialog)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-        self.pushButton_2.setGeometry(QRect(240, 130, 71, 31))
-        font = QFont()
-        font.setPointSize(11)
-        self.pushButton_2.setFont(font)
-        icon = QIcon()
-        icon.addFile(u"res/2.gif", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_2.setIcon(icon)
-        self.pushButton_2.setIconSize(QSize(20, 20))
+        Dialog.resize(1007, 736)
         self.listWidget = QListWidget(Dialog)
         self.listWidget.setObjectName(u"listWidget")
-        self.listWidget.setGeometry(QRect(320, 30, 351, 131))
+        self.listWidget.setGeometry(QRect(300, 30, 351, 141))
         self.comboBox_2 = QComboBox(Dialog)
         self.comboBox_2.setObjectName(u"comboBox_2")
-        self.comboBox_2.setGeometry(QRect(400, 0, 181, 21))
+        self.comboBox_2.setGeometry(QRect(380, 0, 181, 21))
         self.reloadingButton = QPushButton(Dialog)
         self.reloadingButton.setObjectName(u"reloadingButton")
-        self.reloadingButton.setGeometry(QRect(590, 0, 81, 21))
-        icon1 = QIcon()
-        icon1.addFile(u"res/4.gif", QSize(), QIcon.Normal, QIcon.Off)
-        self.reloadingButton.setIcon(icon1)
+        self.reloadingButton.setGeometry(QRect(570, 0, 81, 21))
+        icon = QIcon()
+        icon.addFile(u"res/4.gif", QSize(), QIcon.Normal, QIcon.Off)
+        self.reloadingButton.setIcon(icon)
         self.reloadingButton.setAutoRepeatDelay(300)
         self.label_5 = QLabel(Dialog)
         self.label_5.setObjectName(u"label_5")
-        self.label_5.setGeometry(QRect(320, 0, 71, 21))
+        self.label_5.setGeometry(QRect(300, 0, 71, 21))
         self.layoutWidget = QWidget(Dialog)
         self.layoutWidget.setObjectName(u"layoutWidget")
-        self.layoutWidget.setGeometry(QRect(20, 10, 289, 86))
+        self.layoutWidget.setGeometry(QRect(20, 10, 272, 136))
         self.verticalLayout_2 = QVBoxLayout(self.layoutWidget)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -71,9 +61,9 @@ class Ui_Dialog(object):
 
         self.pushButton = QPushButton(self.layoutWidget)
         self.pushButton.setObjectName(u"pushButton")
-        icon2 = QIcon()
-        icon2.addFile(u"res/3.gif", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton.setIcon(icon2)
+        icon1 = QIcon()
+        icon1.addFile(u"res/3.gif", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton.setIcon(icon1)
 
         self.horizontalLayout_4.addWidget(self.pushButton)
 
@@ -111,22 +101,34 @@ class Ui_Dialog(object):
 
         self.verticalLayout_2.addLayout(self.horizontalLayout_3)
 
-        self.dumpfilename = QLabel(Dialog)
+        self.horizontalLayout_5 = QHBoxLayout()
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.label_4 = QLabel(self.layoutWidget)
+        self.label_4.setObjectName(u"label_4")
+
+        self.horizontalLayout_5.addWidget(self.label_4)
+
+        self.lineEdit_findstr = QLineEdit(self.layoutWidget)
+        self.lineEdit_findstr.setObjectName(u"lineEdit_findstr")
+        self.lineEdit_findstr.setEnabled(True)
+
+        self.horizontalLayout_5.addWidget(self.lineEdit_findstr)
+
+
+        self.verticalLayout_2.addLayout(self.horizontalLayout_5)
+
+        self.dumpfilename = QLabel(self.layoutWidget)
         self.dumpfilename.setObjectName(u"dumpfilename")
-        self.dumpfilename.setGeometry(QRect(20, 100, 291, 21))
         self.dumpfilename.setLineWidth(2)
-        self.pushButton_3 = QPushButton(Dialog)
-        self.pushButton_3.setObjectName(u"pushButton_3")
-        self.pushButton_3.setGeometry(QRect(90, 130, 141, 31))
-        self.pushButton_3.setFont(font)
-        self.pushButton_3.setIcon(icon)
-        self.pushButton_3.setIconSize(QSize(20, 20))
+
+        self.verticalLayout_2.addWidget(self.dumpfilename)
+
         self.tableWidget = QTableWidget(Dialog)
         self.tableWidget.setObjectName(u"tableWidget")
-        self.tableWidget.setGeometry(QRect(10, 170, 1011, 491))
+        self.tableWidget.setGeometry(QRect(10, 180, 991, 551))
         self.layoutWidget1 = QWidget(Dialog)
         self.layoutWidget1.setObjectName(u"layoutWidget1")
-        self.layoutWidget1.setGeometry(QRect(680, 0, 259, 172))
+        self.layoutWidget1.setGeometry(QRect(660, 0, 340, 171))
         self.horizontalLayout = QHBoxLayout(self.layoutWidget1)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
@@ -235,9 +237,47 @@ class Ui_Dialog(object):
 
         self.horizontalLayout.addLayout(self.verticalLayout_4)
 
-        self.pushButton_22 = QPushButton(Dialog)
+        self.pushButton_22 = QPushButton(self.layoutWidget1)
         self.pushButton_22.setObjectName(u"pushButton_22")
-        self.pushButton_22.setGeometry(QRect(940, 0, 78, 23))
+
+        self.horizontalLayout.addWidget(self.pushButton_22)
+
+        self.widget = QWidget(Dialog)
+        self.widget.setObjectName(u"widget")
+        self.widget.setGeometry(QRect(20, 150, 271, 21))
+        self.horizontalLayout_6 = QHBoxLayout(self.widget)
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.horizontalLayout_6.setContentsMargins(0, 0, 0, 0)
+        self.pushButton_find = QPushButton(self.widget)
+        self.pushButton_find.setObjectName(u"pushButton_find")
+        font = QFont()
+        font.setPointSize(9)
+        self.pushButton_find.setFont(font)
+        icon2 = QIcon()
+        icon2.addFile(u"res/2.gif", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_find.setIcon(icon2)
+        self.pushButton_find.setIconSize(QSize(20, 20))
+
+        self.horizontalLayout_6.addWidget(self.pushButton_find)
+
+        self.pushButton_3 = QPushButton(self.widget)
+        self.pushButton_3.setObjectName(u"pushButton_3")
+        font1 = QFont()
+        font1.setPointSize(8)
+        self.pushButton_3.setFont(font1)
+        self.pushButton_3.setIcon(icon2)
+        self.pushButton_3.setIconSize(QSize(20, 20))
+
+        self.horizontalLayout_6.addWidget(self.pushButton_3)
+
+        self.pushButton_2 = QPushButton(self.widget)
+        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.pushButton_2.setFont(font)
+        self.pushButton_2.setIcon(icon2)
+        self.pushButton_2.setIconSize(QSize(20, 20))
+
+        self.horizontalLayout_6.addWidget(self.pushButton_2)
+
 
         self.retranslateUi(Dialog)
 
@@ -246,15 +286,14 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
-        self.pushButton_2.setText(QCoreApplication.translate("Dialog", u"\u6267\u884c", None))
         self.reloadingButton.setText(QCoreApplication.translate("Dialog", u"\u91cd\u65b0\u52a0\u8f7d", None))
         self.label_5.setText(QCoreApplication.translate("Dialog", u"filescan\u6587\u4ef6", None))
         self.label.setText(QCoreApplication.translate("Dialog", u"\u955c\u50cf\u6587\u4ef6", None))
         self.pushButton.setText(QCoreApplication.translate("Dialog", u"\u6d4f\u89c8", None))
         self.label_2.setText(QCoreApplication.translate("Dialog", u"Profile(\u955c\u50cf\u7cfb\u7edf\u7248\u672c)", None))
         self.label_3.setText(QCoreApplication.translate("Dialog", u"dumpfiles\u5185\u5b58\u5730\u5740", None))
+        self.label_4.setText(QCoreApplication.translate("Dialog", u"\u81ea\u5b9a\u4e49\u641c\u7d22\u5b57\u7b26\u4e32", None))
         self.dumpfilename.setText("")
-        self.pushButton_3.setText(QCoreApplication.translate("Dialog", u"\u65e0Profile\u6267\u884c", None))
         self.pushButton_4.setText(QCoreApplication.translate("Dialog", u"pslist", None))
         self.pushButton_5.setText(QCoreApplication.translate("Dialog", u"atoms", None))
         self.pushButton_6.setText(QCoreApplication.translate("Dialog", u"atomscan", None))
@@ -274,5 +313,8 @@ class Ui_Dialog(object):
         self.pushButton_20.setText(QCoreApplication.translate("Dialog", u"shimcache", None))
         self.pushButton_21.setText(QCoreApplication.translate("Dialog", u"callbacks", None))
         self.pushButton_22.setText(QCoreApplication.translate("Dialog", u"cmdline", None))
+        self.pushButton_find.setText(QCoreApplication.translate("Dialog", u"\u641c\u7d22", None))
+        self.pushButton_3.setText(QCoreApplication.translate("Dialog", u"\u65e0Profile\u6267\u884c", None))
+        self.pushButton_2.setText(QCoreApplication.translate("Dialog", u"\u6267\u884c", None))
     # retranslateUi
 
