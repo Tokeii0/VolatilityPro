@@ -1,5 +1,11 @@
 # VolatilityPro ![10A2CDC8](https://github.com/Tokeii0/VolatilityPro/assets/111427585/cb6d8b58-2923-4147-9ac7-9491678af765)
 
+
+## 2023.6.18 更新一下 新增了个镜像字符串搜索功能
+
+![嘻嘻](https://github.com/Tokeii0/VolatilityPro/assets/111427585/8e90b625-8c96-4f8a-bbfc-4fd66e7fa743)
+
+------------------------------------------
 ## 2023.6.12 更新一下
 
 ![动画2](https://github.com/Tokeii0/VolatilityPro/assets/111427585/19e089bb-4f68-47a1-ab3c-020e52a74847)
