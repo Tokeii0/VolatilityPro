@@ -1,5 +1,6 @@
 # VolatilityPro ![10A2CDC8](https://github.com/Tokeii0/VolatilityPro/assets/111427585/cb6d8b58-2923-4147-9ac7-9491678af765)
 
+## 最好使用3.10+版本python 其他版本可能有莫名奇妙bug
 
 ## 2023.6.18 更新一下 新增了个镜像字符串搜索功能 顺便表格宽度自适应也加上去了
 
