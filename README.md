@@ -1,6 +1,5 @@
 
 # VolatilityPro 
-![10A2CDC8](https://github.com/Tokeii0/VolatilityPro/assets/111427585/cb6d8b58-2923-4147-9ac7-9491678af765)
 
 **推荐使用 Python 3.10+ 版本**，其他版本可能存在未知的 bug。
 
