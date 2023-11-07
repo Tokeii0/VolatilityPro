@@ -4,6 +4,13 @@
 
 **推荐使用 Python 3.10+ 版本**，其他版本可能存在未知的 bug。
 
+---
+正在重构之前写的太烂了，只是一个勉强能用的情况，能用但不好用，准备加一点新功能，敬请期待
+
+![image](https://github.com/Tokeii0/VolatilityPro/assets/111427585/037e9f53-4394-418a-b963-c617c0b0b85a)
+![image](https://github.com/Tokeii0/VolatilityPro/assets/111427585/407764cd-6929-4426-aa40-92e34f0a4e4c)
+
+
 ## 更新记录
 
 ### 2023.6.18
