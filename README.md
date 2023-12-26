@@ -3,7 +3,8 @@
 
 **推荐使用 Python 3.10+ 版本**，其他版本可能存在未知的 bug。
 
-#2023.11.30
+### 新坑LovelyMem
+https://github.com/Tokeii0/LovelyMem
 
 ---
 这个项目拉了，之后不更新了，研究了一个新玩意，等比赛完了发
