@@ -295,7 +295,7 @@ class Ui_Dialog(object):
         self.label_4.setText(QCoreApplication.translate("Dialog", u"\u81ea\u5b9a\u4e49\u641c\u7d22\u5b57\u7b26\u4e32", None))
         self.dumpfilename.setText("")
         self.pushButton_4.setText(QCoreApplication.translate("Dialog", u"pslist", None))
-        self.pushButton_5.setText(QCoreApplication.translate("Dialog", u"atoms", None))
+        self.pushButton_5.setText(QCoreApplication.translate("Dialog", u"clipboard", None))
         self.pushButton_6.setText(QCoreApplication.translate("Dialog", u"atomscan", None))
         self.pushButton_7.setText(QCoreApplication.translate("Dialog", u"drivermodule", None))
         self.pushButton_8.setText(QCoreApplication.translate("Dialog", u"driverscan", None))
