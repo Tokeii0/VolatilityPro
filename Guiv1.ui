@@ -195,7 +195,7 @@
       <item>
        <widget class="QPushButton" name="pushButton_5">
         <property name="text">
-         <string>atoms</string>
+         <string>clipboard</string>
         </property>
        </widget>
       </item>

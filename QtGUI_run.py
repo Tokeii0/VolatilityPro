@@ -5,6 +5,7 @@ from PySide6.QtGui import QIcon
 import sys,subprocess
 import warnings
 import os,csv,re,mmap
+import pandas as pd
 
 class MyForm(QDialog):
     def __init__(self):
@@ -31,7 +32,7 @@ class MyForm(QDialog):
         #选择后直接执行load_filescan
         self.ui.comboBox_2.currentIndexChanged.connect(self.load_filescan)
         self.ui.pushButton_4.clicked.connect(lambda:self.load_csv_to_table('pslist'))
-        self.ui.pushButton_5.clicked.connect(lambda:self.load_csv_to_table('atoms'))
+        self.ui.pushButton_5.clicked.connect(lambda:self.load_clipboard_to_table())
         self.ui.pushButton_6.clicked.connect(lambda:self.load_csv_to_table('atomscan'))
         self.ui.pushButton_7.clicked.connect(lambda:self.load_csv_to_table('drivermodule'))
         self.ui.pushButton_8.clicked.connect(lambda:self.load_csv_to_table('driverscan'))
@@ -160,6 +161,39 @@ class MyForm(QDialog):
             lines = f.readlines()
             lines = [line for line in lines if line.strip()]
             lines = [line.strip().split(',') for line in lines]
+        self.ui.tableWidget.setRowCount(len(lines))
+        self.ui.tableWidget.setColumnCount(len(lines[0]))
+        for i, row in enumerate(lines):
+            for j, col in enumerate(row):
+                self.ui.tableWidget.setItem(i, j, QTableWidgetItem(col))
+        self.ui.tableWidget.resizeColumnsToContents()
+    # 加载clipboard到table
+    def load_clipboard_to_table(self):
+        filename = "clipboard"
+        txt_file = rf"output/{filename}.txt"
+        csv_file = rf"output/{filename}.csv"
+        with open(txt_file, "r") as f:
+            lines = f.readlines()
+        # 处理文本数据
+        data = []
+        for line in lines:
+            # 如果不是空行
+            if line.strip():
+                lst = line.strip().split()
+                try:
+                    lst[5] = ' '.join(lst[5:])
+                    del lst[6:]
+                except:
+                    pass
+                data.append(lst)
+        # 使用 Pandas 创建数据帧，使用data[0]作为列名
+        df = pd.DataFrame(data[1:], columns=data[0])
+        # 将数据帧写入 CSV 文件
+        df.to_csv(csv_file, index=False)
+        filename = f"output/{filename}.csv"
+        if not os.path.exists(filename):
+            return
+        lines=data
         self.ui.tableWidget.setRowCount(len(lines))
         self.ui.tableWidget.setColumnCount(len(lines[0]))
         for i, row in enumerate(lines):
